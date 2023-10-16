@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "social-network"
+version = "0.1.0"
+description = ""
+authors = ["System256 <roman.palcev@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^4.2.6"
+django-extensions = "^3.2.3"
+ipython = "^8.16.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
