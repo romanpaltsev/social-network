@@ -4,8 +4,14 @@ from django import forms
  
  
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Электронная почта / Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    username = forms.CharField(
+        label='Электронная почта / Логин',
+        widget=forms.TextInput(attrs={'class': 'form-input', "autofocus": True}),
+    )
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={'class': 'form-input'}),
+    )
 
 
 class RegisterUserForm(UserCreationForm):

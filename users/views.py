@@ -1,5 +1,5 @@
 from django.contrib.auth.views import LoginView
-from django.views import generic
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from .forms import LoginUserForm, RegisterUserForm
@@ -18,7 +18,7 @@ class LoginUserView(LoginView):
         return context
 
 
-class RegisterUserView(generic.CreateView):
+class RegisterUserView(CreateView):
     form_class = RegisterUserForm
     template_name = 'users/form_view.html'
     success_url = reverse_lazy('profile')
