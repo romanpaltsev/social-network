@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'users.apps.UsersConfig',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +95,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_ROOT = Path(BASE_DIR, 'static')
+
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = Path(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
