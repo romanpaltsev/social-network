@@ -5,6 +5,11 @@ import uuid
 
 User = get_user_model()
 
+def rename_image(instance, filename) -> str:
+    image_name = str(uuid.uuid4())
+    image_type = filename.split('.')[-1]
+    return f'avatar/{image_name}.{image_type}'
+
 
 class Profile(models.Model):
     class Meta:
@@ -24,8 +29,8 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
     )
     avatar = models.ImageField(
-        name="Аватарка"
-        default='avatar/avatar.jpg',
+        name="Аватарка",
+        default='/static/avatar/avatar.jpg',
         upload_to=rename_image,
         null=True,
         blank=True,
@@ -44,7 +49,6 @@ class Profile(models.Model):
     )
     gender = models.PositiveSmallIntegerField(
         name="Пол",
-        max_length=2,
         choices=GENDER_CHOICES,
         null=True,
         blank=True,
@@ -62,11 +66,6 @@ class Profile(models.Model):
         null=True,
         blank=True,
     )
-
-    def rename_image(instance, filename):
-        image_name = str(uuid.uuid4())
-        image_type = filename.split('.')[-1]
-        return f'avatar/{image_name}.{image_type}'
 
     def __str__(self):
         return str(self.user.username)
