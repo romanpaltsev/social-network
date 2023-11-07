@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 import uuid
 
+from core.models import BaseModel
+
 
 User = get_user_model()
 
@@ -11,10 +13,10 @@ def rename_image(instance, filename) -> str:
     return f'avatar/{image_name}.{image_type}'
 
 
-class Profile(models.Model):
+class Profile(BaseModel):
     class Meta:
-        verbose_name = "Profile"
-        verbose_name_plural = "Profiles"
+        verbose_name = "Профиль"
+        verbose_name_plural = "Профили"
 
     MALE = 1
     FEMALE = 2
@@ -24,12 +26,12 @@ class Profile(models.Model):
     ]
 
     user = models.OneToOneField(
-        name="Пользователь",
+        verbose_name="Пользователь",
         to=User,
         on_delete=models.CASCADE,
     )
     avatar = models.ImageField(
-        name="Аватарка",
+        verbose_name="Аватарка",
         default='/static/avatar/avatar.jpg',
         upload_to=rename_image,
         null=True,
@@ -37,31 +39,31 @@ class Profile(models.Model):
         help_text="Изображение пользователя",
     )
     birthday = models.DateField(
-        name="День рождения",
+        verbose_name="День рождения",
         null=True,
         blank=True,
     )
     bio = models.CharField(
-        name="О себе",
+        verbose_name="О себе",
         max_length=1024,
         null=True,
         blank=True,
     )
     gender = models.PositiveSmallIntegerField(
-        name="Пол",
+        verbose_name="Пол",
         choices=GENDER_CHOICES,
         null=True,
         blank=True,
         help_text="Пол пользователя",
     )
     city = models.CharField(
-        name="Город",
+        verbose_name="Город",
         max_length=50,
         null=True,
         blank=True,
     )
     telegram = models.CharField(
-        name="Телеграм",
+        verbose_name="Телеграм",
         max_length=50,
         null=True,
         blank=True,

@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+
 {% block title %}{{ title }}{% endblock title %}
  
 {% block content %}
-<h1>{{ title }}</h1>
+<h1>Профиль</h1>
 <div class="card-body">
-    <img src="" alt="">
-    <p><strong>Имя:</strong></p>
-    <p><strong>Фамилия:</strong></p>
-    <p><strong>Электронная почта:</strong></p>
-    <p><strong>Дата рождения:</strong></p>
-    <p><strong>Пол:</strong></p>
-    <p><strong>Город:</strong></p>
-    <p><strong>Телеграм:</strong></p>
-    <p><strong>О себе:</strong></p>
+    <img src="{{ profile.avatar.url }}" height=100 width=100><br><br>
+    <p><strong>Имя: </strong>{{ user.first_name }}</p>
+    <p><strong>Фамилия: </strong>{{ user.last_name }}</p>
+    <p><strong>Электронная почта: </strong>{{ user.email }}</p>
+    <p><strong>Дата рождения: </strong>{{ profile.birthday }}</p>
+    <p><strong>Пол: </strong>{{ profile.gender }}</p>
+    <p><strong>Город: </strong>{{ profile.city }}</p>
+    <p><strong>Телеграм: </strong>{{ profile.telegram }}</p>
+    <p><strong>О себе: </strong>{{ profile.bio }}</p>
 </div>
 {% endblock %}
