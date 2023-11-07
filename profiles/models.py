@@ -21,8 +21,8 @@ class Profile(BaseModel):
     MALE = 1
     FEMALE = 2
     GENDER_CHOICES = [
-        ("MALE", "Мужчина"),
-        ("FEMALE", "Женщина"),
+        (MALE, "Мужчина"),
+        (FEMALE, "Женщина"),
     ]
 
     user = models.OneToOneField(
