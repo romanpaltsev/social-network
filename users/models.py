@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     email = models.EmailField(
-        "Электронная почта",
+        verbose_name="Электронная почта",
         max_length=100,
         unique=True,
         help_text="Электронная почта должна быть уникальной",

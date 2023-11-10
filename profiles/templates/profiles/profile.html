@@ -1,17 +1,32 @@
 {% extends 'base.html' %}
+
 {% block title %}{{ title }}{% endblock title %}
  
 {% block content %}
-<h1>{{ title }}</h1>
+<h1>Профиль</h1>
 <div class="card-body">
-    <img src="" alt="">
-    <p><strong>Имя:</strong></p>
-    <p><strong>Фамилия:</strong></p>
-    <p><strong>Электронная почта:</strong></p>
-    <p><strong>Дата рождения:</strong></p>
-    <p><strong>Пол:</strong></p>
-    <p><strong>Город:</strong></p>
-    <p><strong>Телеграм:</strong></p>
-    <p><strong>О себе:</strong></p>
+    <img src="{{ profile.avatar.url }}" height=100 width=100><br><br>
+    {% if user.first_name %}
+    <p><strong>Имя: </strong>{{ user.first_name }}</p>
+    {% endif %}
+    {% if user.last_name %}
+    <p><strong>Фамилия: </strong>{{ user.last_name }}</p>
+    {% endif %}
+    <p><strong>Электронная почта: </strong>{{ user.email }}</p>
+    {% if profile.birthday %}
+    <p><strong>Дата рождения: </strong>{{ profile.birthday }}</p>
+    {% endif %}
+    {% if profile.gender %}
+    <p><strong>Пол: </strong>{{ profile.get_gender_display }}</p>
+    {% endif %}
+    {% if profile.city %}
+    <p><strong>Город: </strong>{{ profile.city }}</p>
+    {% endif %}
+    {% if profile.telegram %}
+    <p><strong>Телеграм: </strong>{{ profile.telegram }}</p>
+    {% endif %}
+    {% if profile.bio %}
+    <p><strong>О себе: </strong>{{ profile.bio }}</p>
+    {% endif %}
 </div>
 {% endblock %}

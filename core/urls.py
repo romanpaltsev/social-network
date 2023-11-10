@@ -9,8 +9,11 @@ urlpatterns = [
     path('', IndexPage.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', namespace="users")),
+    path('profile/', include('profiles.urls', namespace="profile")),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns = [path('__debug__/', include('debug_toolbar.urls'))] + urlpatterns
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 app_name = "core"

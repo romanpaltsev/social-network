@@ -14,6 +14,10 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -22,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'debug_toolbar',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'profiles.apps.ProfilesConfig',
@@ -35,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -71,7 +77,9 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = LOGIN_URL
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -104,5 +112,4 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = Path(BASE_DIR, 'media')
 
-MEDIA_URL = '/media/'
-
+# MEDIA_URL = '/media/'
