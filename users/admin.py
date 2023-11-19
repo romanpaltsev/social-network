@@ -10,4 +10,4 @@ class CustomUserAdmin(UserAdmin):
     add_form = RegisterUserForm
 
 
-admin.site.register(CustomUser,CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
