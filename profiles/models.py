@@ -32,7 +32,6 @@ class Profile(BaseModel):
     )
     avatar = models.ImageField(
         verbose_name="Аватарка",
-        default='/static/avatar/avatar.jpg',
         upload_to=rename_image,
         null=True,
         blank=True,

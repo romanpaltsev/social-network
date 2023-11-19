@@ -7,24 +7,15 @@
       </a>
     </div>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="#" class="nav-link px-2 link-secondary">Стена</a></li>
-      <li><a href="#" class="nav-link px-2">Все пользователи</a></li>
-    </ul>
-
-    <form class="col-12 col-md-auto mb-2 mb-lg-0 justify-content-center me-lg-3" role="search">
-      <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
-    </form>
-
     {% if user.is_authenticated %}
     <div class="dropdown text-end">
       <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{ profile.avatar.url }}" alt="mdo" width="45" height="45" class="rounded-1">
+        {% load static %}
+        <img src="{% if user.profile.avatar %}{{ user.profile.avatar.url }}{% else %}{% static 'avatar/default.jpg' %}{% endif %}" alt="avatar" width="45" height="45" class="rounded-1">
       </a>
       <ul class="dropdown-menu text-small">
         <li class="dropdown-item">Привет, <strong>{{ user.username }}</strong></li>
         <li><a class="dropdown-item" href="{% url 'profile:profile' user.pk %}">Профиль</a></li>
-        <li><a class="dropdown-item" href="#">Настройки</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
       </ul>

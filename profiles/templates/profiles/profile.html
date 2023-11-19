@@ -3,16 +3,17 @@
 {% block title %}{{ title }}{% endblock title %}
  
 {% block content %}
-<h1>Профиль</h1>
+<h1>Профиль [{{ profile.user.username }}]</h1>
 <div class="card-body">
-    <img src="{{ profile.avatar.url }}" height=100 width=100><br><br>
-    {% if user.first_name %}
-    <p><strong>Имя: </strong>{{ user.first_name }}</p>
+    {% load static %}
+    <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'avatar/default.jpg' %}{% endif %}" height=100 width=100><br><br>
+    {% if profile.user.first_name %}
+    <p><strong>Имя: </strong>{{ profile.user.first_name }}</p>
     {% endif %}
-    {% if user.last_name %}
-    <p><strong>Фамилия: </strong>{{ user.last_name }}</p>
+    {% if profile.user.last_name %}
+    <p><strong>Фамилия: </strong>{{ profile.user.last_name }}</p>
     {% endif %}
-    <p><strong>Электронная почта: </strong>{{ user.email }}</p>
+    <p><strong>Электронная почта: </strong>{{ profile.user.email }}</p>
     {% if profile.birthday %}
     <p><strong>Дата рождения: </strong>{{ profile.birthday }}</p>
     {% endif %}
