@@ -3,8 +3,9 @@
 {% block title %}{{ title }}{% endblock title %}
  
 {% block content %}
-<h1>Профиль [{{ profile.user.username }}]</h1>
+<div class="content-section">
 <div class="card-body">
+    <h3>Профиль [{{ profile.user.username }}]</h3>
     {% load static %}
     <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'avatar/default.jpg' %}{% endif %}" height=100 width=100><br><br>
     {% if profile.user.first_name %}
@@ -29,5 +30,6 @@
     {% if profile.bio %}
     <p><strong>О себе: </strong>{{ profile.bio }}</p>
     {% endif %}
+</div>
 </div>
 {% endblock %}

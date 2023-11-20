@@ -2,11 +2,12 @@
 {% block title %}{{ title }}{% endblock title %}
  
 {% block content %}
-<h1>{{ title }}</h1>
- 
-<form method="post">
+<div class="content-section">
+    <h3>{{ title }}</h3>
+    <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <p><button type="submit">{{ btn_text }}</button></p>
-</form>
+    </form>
+</div>
 {% endblock %}
