@@ -10,7 +10,7 @@ User = get_user_model()
 def rename_image(instance, filename) -> str:
     image_name = str(uuid.uuid4())
     image_type = filename.split('.')[-1]
-    return f'avatar/{image_name}.{image_type}'
+    return f'profiles/avatar/{image_name}.{image_type}'
 
 
 class Profile(BaseModel):
