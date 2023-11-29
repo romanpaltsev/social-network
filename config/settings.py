@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'profiles.apps.ProfilesConfig',
+    'posts.apps.PostsConfig',
 ]
 
 MIDDLEWARE = [

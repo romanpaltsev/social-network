@@ -3,10 +3,10 @@
 {% block title %}{{ title }}{% endblock title %}
  
 {% block content %}
+{% load static %}
 <div class="content-section">
 <div class="card-body">
     <h3>Профиль [{{ profile.user.username }}]</h3>
-    {% load static %}
     <img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'avatar/default.jpg' %}{% endif %}" height=100 width=100><br><br>
     {% if profile.user.first_name %}
     <p><strong>Имя: </strong>{{ profile.user.first_name }}</p>

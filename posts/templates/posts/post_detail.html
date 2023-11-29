@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+ 
+{% block content %}
+{% load static %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{% if post.author.profile.avatar %}{{ post.author.profile.avatar.url }}{% else %}{% static 'avatar/default.jpg' %}{% endif %}">
+    <div class="media-body">
+        <div class="article-metadata">
+        <a class="mr-2" href="{% url 'profile:profile' post.author.pk %}">{{ post.author.username }}</a>
+        <small class="text-muted">{{ post.created_at|date:"F d, Y" }}</small>
+            {% if post.author == user %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post:post-update' post.pk %}">Редактировать</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post:post-delete' post.pk %}">Удалить</a>
+            </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ post.title }}</h2>
+        <p class="article-content">{{ post.content }}</p>
+    </div>
+</article>
+{% endblock %}
