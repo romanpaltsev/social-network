@@ -1,6 +1,7 @@
+import uuid
+
 from django.contrib.auth import get_user_model
 from django.db import models
-import uuid
 
 from core.models import BaseModel
 
@@ -70,3 +71,9 @@ class Profile(BaseModel):
 
     def __str__(self):
         return str(self.user.username)
+    
+    @property
+    def get_avatar(self):
+        if self.avatar:
+            return self.avatar.url
+        return f'https://ui-avatars.com/api/?size=150&background=random&name={self.user.username}'

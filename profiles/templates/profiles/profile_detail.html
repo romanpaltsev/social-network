@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+ 
+{% block content %}
+{% load static %}
+<div class="content-section">
+    <div class="card-body">
+        <h3>Профиль [{{ profile.user.username }}]</h3>
+        <i>Был онлайн последний раз: {{ profile.user.last_login }}</i>
+        <p><img src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{{ profile.get_avatar }}{% endif %}" height=100 width=100></p>
+        {% if profile.user.first_name %}
+        <p><strong>Имя: </strong>{{ profile.user.first_name }}</p>
+        {% endif %}
+        {% if profile.user.last_name %}
+        <p><strong>Фамилия: </strong>{{ profile.user.last_name }}</p>
+        {% endif %}
+        <p><strong>Электронная почта: </strong>{{ profile.user.email }}</p>
+        {% if profile.birthday %}
+        <p><strong>Дата рождения: </strong>{{ profile.birthday }}</p>
+        {% endif %}
+        {% if profile.gender %}
+        <p><strong>Пол: </strong>{{ profile.get_gender_display }}</p>
+        {% endif %}
+        {% if profile.city %}
+        <p><strong>Город: </strong>{{ profile.city }}</p>
+        {% endif %}
+        {% if profile.telegram %}
+        <p><strong>Телеграм: </strong>{{ profile.telegram }}</p>
+        {% endif %}
+        {% if profile.bio %}
+        <p><strong>О себе: </strong>{{ profile.bio }}</p>
+        {% endif %}
+        {% if profile.user == user %}
+        <a href="{% url 'profile:profile_update' %}" class="btn btn-sm btn-primary">Редактировать профиль</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
