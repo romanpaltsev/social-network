@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="content-section">
+    <div class="card-body">
+        <div class="card-title nth-card-title">
+            <h4>Изменение профиля</h4>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ form.as_p }}
+        <div class="d-grid gap-2 d-md-block mt-2">
+            <button type="submit" class="btn btn-primary">Обновить</button>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

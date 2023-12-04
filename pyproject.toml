@@ -2,7 +2,7 @@
 name = "social-network"
 version = "0.1.0"
 description = ""
-authors = ["System256 <roman.palcev@gmail.com>"]
+authors = ["Roman Paltsev <roman.palcev@gmail.com>"]
 license = "MIT License"
 readme = "README.md"
 

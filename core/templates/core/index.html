@@ -4,18 +4,17 @@
 {% block content %}
 {% for post in posts %}
 {% if post and post.is_active %}
-{% load static %}
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{% if post.author.profile.avatar %}{{ post.author.profile.avatar.url }}{% else %}{% static 'avatar/default.jpg' %}{% endif %}">
+    <img class="rounded-circle article-img" src="{% if post.author.profile.avatar %}{{ post.author.profile.avatar.url }}{% else %}{{ post.author.profile.get_avatar }}{% endif %}">
     <div class="media-body">
         <div class="article-metadata">
-        <a class="mr-2" href="{% url 'profile:profile' post.author.pk %}">{{ post.author.username }}</a>
+        <a class="mr-2" href="{% url 'profile:profile_detail' post.author.pk %}">{{ post.author.username }}</a>
         <small class="text-muted">{{ post.created_at|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="{% url 'post:post-detail' post.pk %}">{{ post.title }}</a></h2>
+        <h2><a class="article-title" href="{% url 'post:post_detail' post.pk %}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content|truncatewords:30 }}</p>
         <div>
-          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post:post-detail' post.pk %}">Далее</a>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post:post_detail' post.pk %}">Далее</a>
         </div>
     </div>
 </article>
