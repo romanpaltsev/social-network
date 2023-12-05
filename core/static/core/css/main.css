@@ -81,6 +81,24 @@ a.article-title:hover {
   vertical-align: middle;
 }
 
+.pagination .btn-info {
+  color: #fff;
+  background-color: #6699cc;
+  border-color: #6699cc;
+}
+.pagination .btn-outline-info {
+  color: #6699cc;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6699cc;
+}
+
+.pagination .btn-outline-info:hover {
+  color: #fff;
+  background-color: #6699cc;
+  border-color: #6699cc;
+}
+
 .account-img {
   height: 125px;
   width: 125px;
