@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -51,9 +52,10 @@ class PostDetailView(DetailView):
         return context
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'posts/post_create.html'
+    success_message = 'Пост успешно создан!'
     fields = ['title', 'content']
 
     def form_valid(self, form):
@@ -61,9 +63,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     template_name = 'posts/post_update.html'
+    success_message = 'Пост успешно обновлен!'
     fields = ['title', 'content']
 
     def form_valid(self, form):
@@ -77,9 +80,10 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
     
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'posts/post_confirm_delete.html'
+    success_message = 'Пост успешно удален!'
     context_object_name = 'post'
     success_url = reverse_lazy('index')
 

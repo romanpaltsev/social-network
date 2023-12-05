@@ -1,10 +1,11 @@
 from typing import Any
 
 from django.views.generic import DetailView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db import models, transaction
+from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.http import HttpResponse
-from django.db.models.query import QuerySet
 
 from .models import Profile
 from .forms import UserUpdateForm, ProfileUpdateForm
@@ -24,9 +25,10 @@ class ProfileDetailView(DetailView):
         return context
     
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     model = Profile
     form_class = ProfileUpdateForm
+    success_message = 'Профиль успешно обновлен!'
     template_name = 'profiles/profile_update.html'
 
     def get_object(self, queryset=None) -> Any:
